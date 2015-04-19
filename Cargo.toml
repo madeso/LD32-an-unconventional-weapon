@@ -2,3 +2,9 @@
 name = "game"
 version = "0.0.1"
 authors = ["Gustav <sir.gustav.the.coder@gmail.com>"]
+
+[dependencies]
+sdl2 = "0.2.1"
+
+[dependencies.gl]
+git = "https://github.com/bjz/gl-rs"
