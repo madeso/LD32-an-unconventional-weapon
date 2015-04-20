@@ -7,3 +7,4 @@ authors = ["Gustav <sir.gustav.the.coder@gmail.com>"]
 sdl2 = "0.2.1"
 glium = "*"
 libc = "*"
+cgmath = "0.1.3"
