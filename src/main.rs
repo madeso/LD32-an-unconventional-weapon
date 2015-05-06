@@ -20,7 +20,7 @@ fn load_file_to_string(file_path : &str) -> String {
   let mut file = match File::open(&path) {
       // The `description` method of `io::Error` returns a string that
       // describes the error
-      Err(why) => panic!("Couldn't open {}: {}", display, Error::description(&why)),
+      Err(why) => panic!("Couldn't open file: {}: {}", display, Error::description(&why)),
       Ok(file) => file,
   };
 
