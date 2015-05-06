@@ -1,6 +1,8 @@
 Todo
 ======
 
+[![Build Status](https://travis-ci.org/madeso/rust-game-engine.svg)](https://travis-ci.org/madeso/rust-game-engine)
+
 * protobuf settings
 * render 3d model
 * easy 2d renderer
