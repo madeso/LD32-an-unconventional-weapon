@@ -9,6 +9,8 @@ Todo
 * load 3d model with assimp
 * world + actor + def structure
 * camera system
+* lights
 * world portal rendering
+* world editor http://gamedev.stackexchange.com/questions/31717/how-to-generate-portal-zones
 * camera facing polygons
 * particle system
