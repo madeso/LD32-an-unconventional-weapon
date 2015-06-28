@@ -8,5 +8,7 @@ sdl2 = "*"
 glium = "*"
 libc = "*"
 
+glium_sdl2 = "*"
+
 # http://rust-ci.org/bjz/cgmath-rs/doc/cgmath/index.html
 cgmath = "*"

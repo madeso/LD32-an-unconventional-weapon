@@ -1,11 +1,13 @@
 extern crate sdl2;
 extern crate glium;
 extern crate libc;
+extern crate glium_sdl2;
 
-use sdl2::video::{Window, WindowPos, OPENGL};
-use sdl2::keycode::KeyCode;
+use sdl2::video::{Window, WindowPos};
+use sdl2::keyboard::Keycode;
 use std::rc::Rc;
 use glium::Surface;
+use glium_sdl2::DisplayBuild;
 
 fn load_file_to_string(file_path : &str) -> String {
   use std::error::Error;
@@ -33,64 +35,20 @@ fn load_file_to_string(file_path : &str) -> String {
 }
 
 pub fn main() {
-  let sdl_context = sdl2::init(sdl2::INIT_VIDEO).unwrap();
-  
-  sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLContextProfileMask, sdl2::video::GLProfile::GLCoreProfile as i32);
-  sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLContextMajorVersion, 3);
-  sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLContextMinorVersion, 3);
-  sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLDoubleBuffer, 1);
-  sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLDepthSize, 24);
-  
-  let mut window = match Window::new(&sdl_context, "game", WindowPos::PosCentered, WindowPos::PosCentered, 800, 600, OPENGL) {
-    Ok(window) => window,
-    Err(err) => panic!("Failed to create window: {}", err)
-  };
-  let context = window.gl_create_context().unwrap();
-  let mut event_pump = sdl_context.event_pump();
-  let dsize = window.properties(&event_pump).get_drawable_size();
-  let rcwindow = Rc::new(window);
-  
-  struct Backend {
-    window: Rc<Window>,
-    size : (i32, i32),
-  }
-  unsafe impl glium::backend::Backend for Backend {
-    fn swap_buffers(&self) {
-        self.window.gl_swap_window();
-    }
-    unsafe fn get_proc_address(&self, symbol: &str) -> *const libc::c_void {
-      std::mem::transmute(sdl2::video::gl_get_proc_address(symbol))
-    }
-    fn get_framebuffer_dimensions(&self) -> (u32, u32) {
-      let size = self.size;
-      let (w,h) = size;
-      (w as u32, h as u32)
-    }
-    fn is_current(&self) -> bool {
-      false
-    }
-    unsafe fn make_current(&self) {
-      let gl_context = match sdl2::video::gl_get_current_context() {
-        Ok(context) => context,
-        Err(err) => panic!("Failed to get GL context: {}", err)
-      };
-      self.window.gl_make_current(&gl_context);
-    }
-  }
-  let context = unsafe {
-      glium::backend::Context::new(Backend { window:rcwindow.clone(), size:dsize }, false)
-    }.unwrap();
-  
-  loop {
-    for event in event_pump.poll_iter() {
-      use sdl2::event::Event;
-      
-      let mut target = glium::Frame::new(context.clone(), context.get_framebuffer_dimensions());
-      target.clear_color(0.0, 1.0, 0.0, 1.0);
-      target.finish();
+  let mut sdl_context = sdl2::init().video().unwrap();
 
+  let mut window = sdl_context.window("game", 800, 600)
+    .build_glium()
+    .unwrap();
+  loop {
+    let mut target = window.draw();
+    target.clear_color(0.0, 1.0, 0.0, 1.0);
+    target.finish();
+
+    for event in sdl_context.event_pump().poll_iter() {
+      use sdl2::event::Event;
       match event {
-        Event::Quit {..} | Event::KeyDown { keycode: KeyCode::Escape, .. } => {
+        Event::Quit {..} | Event::KeyDown {..} => {
           return;
         },
         _ => {}
