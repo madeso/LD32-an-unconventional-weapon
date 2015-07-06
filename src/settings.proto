@@ -1,0 +1,6 @@
+package euphoria;
+
+message Settings {
+	optional uint32 width = 1 [default=800];
+	optional uint32 height = 2 [default=600];
+}

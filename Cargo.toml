@@ -4,11 +4,17 @@ version = "0.0.1"
 authors = ["Gustav <sir.gustav.the.coder@gmail.com>"]
 
 [dependencies]
-sdl2 = "*"
-glium = "*"
+glium_sdl2 = "0.3"
+sdl2 = "0.5"
 libc = "*"
-
-glium_sdl2 = "*"
 
 # http://rust-ci.org/bjz/cgmath-rs/doc/cgmath/index.html
 cgmath = "*"
+
+protobuf = "*"
+
+[dependencies.glium]
+version = "0.6"
+# Remove any Glium features that you don't use
+features = ["image", "nalgebra", "cgmath", "gl_read_buffer", "gl_depth_textures"]
+default-features = false
