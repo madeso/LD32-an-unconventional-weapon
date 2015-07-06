@@ -4,6 +4,7 @@ Todo
 [![Build Status](https://travis-ci.org/madeso/rust-game-engine.svg)](https://travis-ci.org/madeso/rust-game-engine)
 
 * protobuf settings
+* logging with log + fern
 * render 3d model
 * easy 2d renderer
 * load 3d model with assimp, https://crates.io/crates/assimp https://github.com/Eljay/assimp-rs/blob/master/examples/render.rs
