@@ -6,7 +6,7 @@ Todo
 * protobuf settings
 * render 3d model
 * easy 2d renderer
-* load 3d model with assimp
+* load 3d model with assimp, https://crates.io/crates/assimp https://github.com/Eljay/assimp-rs/blob/master/examples/render.rs
 * world + actor + def structure
 * camera system
 * lights
