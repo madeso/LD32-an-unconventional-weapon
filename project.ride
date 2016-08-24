@@ -1,0 +1,26 @@
+tabWidth: 2
+useTabs: false
+build_settings {
+  name: "Debug"
+  release: false
+  default_features: true
+  target: ""
+  verbose: false
+  custom_arguments: ""
+}
+build_settings {
+  name: "Release"
+  release: true
+  default_features: true
+  target: ""
+  verbose: false
+  custom_arguments: ""
+}
+build_settings {
+  name: "Fred & barney"
+  release: true
+  default_features: false
+  target: ""
+  verbose: true
+  custom_arguments: ""
+}

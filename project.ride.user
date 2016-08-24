@@ -1,0 +1,18 @@
+build_setting: 0
+run_setting: 0
+run {
+  name: "Run it"
+  application: "%built_application%"
+  arguments: ""
+  folder: "%cargo_folder%"
+  cmd_before_launch: ""
+  wait_for_exit: false
+}
+run {
+  name: "External"
+  application: "C:\\Users\\gustav\\WorkingFolder\\ride\\build\\msvc\\ride\\Debug\\ride.exe"
+  arguments: "%built_application%"
+  folder: "C:\\Users\\gustav\\WorkingFolder\\ride\\build\\msvc\\ride\\Debug"
+  cmd_before_launch: ""
+  wait_for_exit: false
+}

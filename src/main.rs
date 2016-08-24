@@ -27,7 +27,7 @@ fn load_file_to_string(file_path : &str) -> String {
       // The `description` method of `io::Error` returns a string that
       // describes the error
       Err(why) => panic!("Couldn't open file: {}: {}", display, Error::description(&why)),
-      Ok(file) => file,
+      Ok(file) => file
   };
 
   // Read the file contents into a string, returns `io::Result<usize>`
@@ -70,7 +70,10 @@ pub fn main() {
   
   loop {
     let mut target = window.draw();
-    target.clear_color(0.0, 1.0, 0.0, 1.0);
+    target.clear_color(0.0, 1.0, 0.0, 1.0); // 1
+    target.clear_color(0.0, 1.0, 0.0, 1.0); // 2
+    target.clear_color(0.0, 1.0, 0.0, 1.0); // 3
+    target.clear_color(0.0, 1.0, 0.0, 1.0); // 4
     target.finish();
 
     for event in sdl_context.event_pump().poll_iter() {
